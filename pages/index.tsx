@@ -7,7 +7,7 @@ import Auth from "./auth";
 async function getUserProfile(liff: Liff) {
   const profile = await liff?.getProfile();
   console.log(profile);
-};
+}
 
 const Home: NextPage<{ liff: Liff | null; liffError: string | null }> = ({
   liff,
@@ -22,6 +22,17 @@ const Home: NextPage<{ liff: Liff | null; liffError: string | null }> = ({
       </Head>
 
       <main className={styles.main}>
+        <>
+          {liff && (liff.isLoggedIn() ? <Auth /> : liff.login())}
+          {liffError && (
+            <>
+              <p>LIFF init failed.</p>
+              <p>
+                <code>{liffError}</code>
+              </p>
+            </>
+          )}
+        </>
         {/* {liff && (
           <>
             {liff.ready.then(() => {
@@ -37,15 +48,6 @@ const Home: NextPage<{ liff: Liff | null; liffError: string | null }> = ({
             })}
           </>
         )} */}
-        {liff && (liff.isLoggedIn() ? <Auth /> : liff.login())}
-        {liffError && (
-          <>
-            <p>LIFF init failed.</p>
-            <p>
-              <code>{liffError}</code>
-            </p>
-          </>
-        )}
       </main>
     </div>
   );
