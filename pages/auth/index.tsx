@@ -8,6 +8,7 @@ export default function Auth() {
       <Head>
         <title>Home page</title>
       </Head>
+      <h1>Homepage</h1>
     </div>
   );
 }

@@ -2,15 +2,17 @@ import type { Liff } from "@line/liff";
 import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
+import Auth from "./auth";
+
+async function getUserProfile(liff: Liff) {
+  const profile = await liff?.getProfile();
+  console.log(profile);
+};
 
 const Home: NextPage<{ liff: Liff | null; liffError: string | null }> = ({
   liff,
   liffError,
 }) => {
-  async function getUserProfile() {
-    const profile = await liff?.getProfile();
-    return profile?.pictureUrl;
-  };
   return (
     <div>
       <Head>
@@ -20,20 +22,22 @@ const Home: NextPage<{ liff: Liff | null; liffError: string | null }> = ({
       </Head>
 
       <main className={styles.main}>
-        <h1>Homepage</h1>
-        {liff && (
+        {/* {liff && (
           <>
             {liff.ready.then(() => {
               if (liff.isLoggedIn()) {
                 if (liff.getOS() === "android") {
-                  <body></body>;
+                <Auth />
+                } else {
+                  <body></body>
                 }
               } else {
-                liff.login();
+                // liff.login();
               }
             })}
           </>
-        )}
+        )} */}
+        {liff && (liff.isLoggedIn() ? <Auth /> : liff.login())}
         {liffError && (
           <>
             <p>LIFF init failed.</p>
