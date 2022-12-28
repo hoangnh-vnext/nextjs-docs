@@ -23,7 +23,7 @@ const Home: NextPage<{ liff: Liff | null; liffError: string | null }> = ({
 
       <main className={styles.main}>
         <>
-          {liff && (liff.isLoggedIn() ? <Auth /> : liff.login())}
+          {liff && (liff.isLoggedIn() ? <Auth liff={liff}/> : liff.login())}
           {liffError && (
             <>
               <p>LIFF init failed.</p>
