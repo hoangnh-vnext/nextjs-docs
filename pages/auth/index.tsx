@@ -10,7 +10,7 @@ export default function Auth(props: any) {
         <title>Home page</title>
       </Head>
       <h1>Homepage</h1>
-      <button>{liff.logout}</button>
+      <button>{liff.logout()}</button>
     </div>
   );
 }
