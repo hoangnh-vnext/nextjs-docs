@@ -13,7 +13,7 @@ export default function Auth(props: any) {
         <title>Home page</title>
       </Head>
       <h1>Homepage</h1>
-      {/* <h1>{liff.getOS()}</h1> */}
+      <h1>{liff.getOS()}</h1>
     </div>
   );
 }
