@@ -1,6 +1,7 @@
 import type { Liff } from "@line/liff";
 import type { NextPage } from "next";
 import Head from "next/head";
+import BottomNav from "../src/partials/BottomNav";
 import styles from "../styles/Home.module.css";
 import Auth from "./auth";
 
@@ -23,7 +24,14 @@ const Home: NextPage<{ liff: Liff | null; liffError: string | null }> = ({
 
       <main className={styles.main}>
         <>
-          {liff && (liff.isLoggedIn() ? <Auth liff={liff}/> : liff.login())}
+          {liff &&
+            (liff.isLoggedIn() && liff.getOS() === "android" ? (
+              <div>
+                <Auth liff={liff} />
+              </div>
+            ) : (
+              <Auth liff={liff} />
+            ))}
           {liffError && (
             <>
               <p>LIFF init failed.</p>
@@ -32,6 +40,7 @@ const Home: NextPage<{ liff: Liff | null; liffError: string | null }> = ({
               </p>
             </>
           )}
+          <BottomNav/>
         </>
         {/* {liff && (
           <>
