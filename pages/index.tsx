@@ -1,14 +1,10 @@
 import type { Liff } from "@line/liff";
 import type { NextPage } from "next";
 import Head from "next/head";
-import BottomNav from "../src/partials/BottomNav";
+import { useState } from "react";
+import HomePage from "../src/pages/Home";
+import BottomNav from "../src/components/partials/BottomNav";
 import styles from "../styles/Home.module.css";
-import Auth from "./auth";
-
-async function getUserProfile(liff: Liff) {
-  const profile = await liff?.getProfile();
-  console.log(profile);
-}
 
 const Home: NextPage<{ liff: Liff | null; liffError: string | null }> = ({
   liff,
@@ -25,12 +21,12 @@ const Home: NextPage<{ liff: Liff | null; liffError: string | null }> = ({
       <main className={styles.main}>
         <>
           {liff &&
-            (liff.isLoggedIn() && liff.getOS() === "android" ? (
+            (liff.isLoggedIn() ? (
               <div>
-                <Auth liff={liff} />
+                <HomePage liff={liff} />
               </div>
             ) : (
-              <Auth liff={liff} />
+              liff.login()
             ))}
           {liffError && (
             <>
@@ -40,23 +36,7 @@ const Home: NextPage<{ liff: Liff | null; liffError: string | null }> = ({
               </p>
             </>
           )}
-          <BottomNav/>
         </>
-        {/* {liff && (
-          <>
-            {liff.ready.then(() => {
-              if (liff.isLoggedIn()) {
-                if (liff.getOS() === "android") {
-                <Auth />
-                } else {
-                  <body></body>
-                }
-              } else {
-                // liff.login();
-              }
-            })}
-          </>
-        )} */}
       </main>
     </div>
   );

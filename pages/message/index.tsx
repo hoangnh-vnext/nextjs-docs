@@ -1,8 +1,6 @@
 import { Liff } from "@line/liff/dist/lib";
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import packageJson from "../../package.json";
-import BottomNav from "../../src/partials/BottomNav";
 import styles from "../../styles/Auth.module.css";
 
 export default function Auth(props: any) {
