@@ -31,11 +31,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   // to page component as property
   pageProps.liff = liffObject;
   pageProps.liffError = liffError;
-  return (
-    <Layout>
-      {liffError ? `${liffError}` : <Component {...pageProps} />}
-    </Layout>
-  );
+  return <Component {...pageProps} />;
 }
 
 export default MyApp;

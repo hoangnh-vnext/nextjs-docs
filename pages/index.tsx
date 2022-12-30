@@ -5,6 +5,7 @@ import { useState } from "react";
 import HomePage from "../src/pages/Home";
 import BottomNav from "../src/components/partials/BottomNav";
 import styles from "../styles/Home.module.css";
+import Layout from "../src/components/layout";
 
 const Home: NextPage<{ liff: Liff | null; liffError: string | null }> = ({
   liff,
@@ -22,9 +23,9 @@ const Home: NextPage<{ liff: Liff | null; liffError: string | null }> = ({
         <>
           {liff &&
             (liff.isLoggedIn() ? (
-              <div>
+              <Layout>
                 <HomePage liff={liff} />
-              </div>
+              </Layout>
             ) : (
               liff.login()
             ))}
