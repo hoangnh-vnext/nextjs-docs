@@ -2,11 +2,8 @@ import Link from "next/link";
 import style from "../../../styles/BottomNav.module.css";
 import { navLinks } from "../../routes/route";
 import { useRouter } from "next/router";
-import VConsole from 'vconsole';
 export default function BottomNav(props: any) {
   const router = useRouter();
-  const vConsole = new VConsole();
-  vConsole.log.log(router.pathname)
   return (
     <div className={style.navbar}>
       {navLinks.map((menuItem, index) => (
