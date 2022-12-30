@@ -3,11 +3,12 @@ import type { AppProps } from "next/app";
 import type { Liff } from "@line/liff";
 import { useState, useEffect } from "react";
 import Layout from "../src/components/layout";
+import VConsole from 'vconsole';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [liffObject, setLiffObject] = useState<Liff | null>(null);
   const [liffError, setLiffError] = useState<string | null>(null);
-
+  const vConsole = new VConsole (); 
   // Execute liff.init() when the app is initialized
   useEffect(() => {
     // to avoid `window is not defined` error
