@@ -14,6 +14,7 @@ export default function HomePage(props: any) {
       .then((profile) => {
         setName(profile.displayName);
         setUserId(profile.userId);
+        console.log(profile);
       })
       .catch((err) => {
         console.log("error", err);
