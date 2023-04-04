@@ -26,6 +26,7 @@ export default function HomePage(props: any) {
       .scanCodeV2()
       .then((result) => {
         setResult(result);
+        console.log(result);
       })
       .catch((error) => {
         console.log("error", error);
