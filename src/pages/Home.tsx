@@ -6,12 +6,14 @@ import styles from "../../styles/Auth.module.css";
 export default function HomePage(props: any) {
   const liff: Liff = props.liff;
   const [name, setName] = useState("");
+  const [userId, setUserId] = useState("");
   const [result, setResult] = useState({});
   useEffect(() => {
     liff
       ?.getProfile()
       .then((profile) => {
-        setName(profile);
+        setName(profile.displayName);
+        setUserId(profile.userId);
       })
       .catch((err) => {
         console.log("error", err);
@@ -36,6 +38,7 @@ export default function HomePage(props: any) {
       <h1>Homepage</h1>
       <h1>{liff?.getOS()}</h1>
       <h1>{name}</h1>
+      <h1>{userId}</h1>
       <button onClick={handleScans}>Scan</button>
     </div>
   );
