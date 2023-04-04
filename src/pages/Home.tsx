@@ -18,8 +18,6 @@ export default function HomePage(props: any) {
       });
   }, []);
 
-  console.log(name);
-
   const handleScans = async () => {
     await liff
       .scanCodeV2()
@@ -37,7 +35,7 @@ export default function HomePage(props: any) {
       </Head>
       <h1>Homepage</h1>
       <h1>{liff?.getOS()}</h1>
-      <h1>{name.displayName}</h1>
+      <h1>{name}</h1>
       <button onClick={handleScans}>Scan</button>
     </div>
   );
